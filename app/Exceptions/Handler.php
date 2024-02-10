@@ -27,4 +27,17 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    protected function prepareResponse($request, Throwable $e): \Illuminate\Http\JsonResponse
+    {
+        return $this->prepareJsonResponse($request, $e);
+    }
+
+    protected function convertExceptionToArray(Throwable $e): array
+    {
+        return [
+            'message' => $e->getMessage(),
+            'status_code' => $this->isHttpException($e) ? $e->getStatusCode() : 500,
+        ];
+    }
 }

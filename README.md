@@ -17,7 +17,6 @@ $ sudo chown -R www-data:admin storage && sudo chown -R www-data:admin bootstrap
 
 
 ## todo
-1. API化
 2. ユーザー登録機能
 3. jwt
 4. oapi
