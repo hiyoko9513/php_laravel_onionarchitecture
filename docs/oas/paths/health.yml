@@ -1,0 +1,18 @@
+get:
+  operationId: getHealth
+  summary: health check
+  description: Return server condition
+  security: []
+  tags:
+    - health
+  responses:
+    '200':
+      description: Server is working properly
+      content:
+        application/json:
+          schema:
+            $ref: '../schema/health.yml'
+    '500':
+      $ref: '../responses/errors/ServerError.yml'
+    '503':
+      $ref: '../responses/errors/ServiceUnavailable.yml'

@@ -1,0 +1,29 @@
+type: object
+properties:
+  original_id:
+    type: string
+    example: 'hiyoko_id'
+  email:
+    type: string
+    example: 'hiyoko@example.com'
+  name:
+    type: string
+    example: '山田悠介'
+  tel:
+    type: string
+    example: '080-0000-0000'
+  birthday:
+    type: string
+    format: date
+    example: '2023-05-30'
+  last_login:
+    type: string
+    format: date-time
+    example: '2023-05-30T15:59:59+09:00'
+required:
+  - original_id
+  - email
+  - name
+  - tel
+  - birthday
+  - last_login

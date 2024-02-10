@@ -1,0 +1,15 @@
+get:
+  operationId: getUser
+  summary: get auth user info
+  description: Return login user info
+  tags:
+    - user
+  responses:
+    '200':
+      description: user info
+      content:
+        application/json:
+          schema:
+            $ref: '../../schema/user.yml'
+    '401':
+      $ref: '../../responses/errors/Unauthorized.yml'
