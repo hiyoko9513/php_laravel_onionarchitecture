@@ -11,17 +11,20 @@ final class AccessLogger
 {
     public function handle(Request $request, Closure $next): JsonResponse
     {
-        $requestId = $request->header('X-Request-Id', 'default');
-
-        Log::info($requestId . ':' . $request->method() . ':' . $request->fullUrl(), [
+        Log::withContext([
+            'request-id' => uniqid('req-', false),
             'user' => $request->user()?->id,
+        ]);
+
+        Log::info($request->fullUrl(), [
             'headers' => $request->headers->all(),
             'body' => $request->all(),
+            'method' => $request->method(),
         ]);
 
         $response = $next($request);
 
-        Log::info($requestId, $response->getData(true));
+        Log::info($response->getData(true));
 
         return $response;
     }
