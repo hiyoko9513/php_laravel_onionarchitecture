@@ -1,0 +1,5 @@
+{
+    "document": "https://openapi-generator.tech/docs/generators/php/",
+    "invokerPackage": "App\\OpenAPI",
+    "variableNamingConvention": "camel_case"
+}

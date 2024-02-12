@@ -21,3 +21,4 @@ yarn-error.log
 
 # generate file
 docs/oas/root.gen.yml
+app/OpenAPI

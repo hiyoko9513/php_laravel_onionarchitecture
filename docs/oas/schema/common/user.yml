@@ -1,0 +1,15 @@
+type: object
+properties:
+  id:
+    type: string
+    example: '123'
+  email:
+    type: string
+    example: 'hiyoko@example.com'
+  name:
+    type: string
+    example: '山田悠介'
+required:
+  - id
+  - email
+  - name

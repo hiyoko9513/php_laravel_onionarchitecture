@@ -1,0 +1,17 @@
+type: object
+properties:
+  email:
+    type: string
+    format: email
+    example: 'hiyoko@example.com'
+  name:
+    type: string
+    example: '山田悠介'
+  password:
+    type: string
+    format: password
+    example: 'hiyoko'
+required:
+  - email
+  - name
+  - password

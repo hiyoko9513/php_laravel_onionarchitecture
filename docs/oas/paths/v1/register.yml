@@ -1,0 +1,20 @@
+post:
+  operationId: postRegister
+  summary: User Registration
+  description: User Registration & Login
+  tags:
+    - auth
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../../schema/register/postRegisterRequestBody.yml'
+  responses:
+    '200':
+      description: return login user & auth info
+      content:
+        application/json:
+          schema:
+            $ref: '../../schema/register/postRegisterResponse.yml'
+    '400':
+      $ref: '../../responses/errors/BadRequest.yml'

@@ -18,15 +18,13 @@ security:
   - AuthApiKey: [ ]
 tags:
   # camelCase
-  - name: master
   - name: auth
   - name: user
-  - name: health
 paths:
-  /v1/user:
-    $ref: './paths/v1/user.yml'
-  /health:
-    $ref: './paths/health.yml'
+  /v1/register:
+    $ref: './paths/v1/register.yml'
+  /v1/me:
+    $ref: './paths/v1/me.yml'
 components:
   securitySchemes:
     AuthApiKey:

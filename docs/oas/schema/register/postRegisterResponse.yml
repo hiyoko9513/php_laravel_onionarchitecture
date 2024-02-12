@@ -1,0 +1,9 @@
+type: object
+properties:
+  user:
+    $ref: '../common/user.yml'
+  authorisation:
+    $ref: '../common/authorisation.yml'
+required:
+  - user
+  - authorisation

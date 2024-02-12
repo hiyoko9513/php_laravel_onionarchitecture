@@ -1,5 +1,5 @@
 get:
-  operationId: getUser
+  operationId: getMe
   summary: get auth user info
   description: Return login user info
   tags:
@@ -10,6 +10,6 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../schema/user.yml'
+            $ref: '../../schema/me/getMeResponse.yml'
     '401':
       $ref: '../../responses/errors/Unauthorized.yml'
