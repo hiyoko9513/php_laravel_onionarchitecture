@@ -7,7 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-final class AccessLogger
+final class Logger
 {
     public function handle(Request $request, Closure $next): JsonResponse
     {
