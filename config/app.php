@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,7 +18,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'onion api'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +57,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://lvh.me'),
 
     'asset_url' => env('ASSET_URL'),
 
@@ -70,7 +72,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Tokyo', // UTC|Asia/Taipei|Asia/Tokyo
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +85,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ja', // en|zh_TW|ja
 
     /*
     |--------------------------------------------------------------------------
@@ -96,7 +98,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'ja', // en|zh_TW|ja
 
     /*
     |--------------------------------------------------------------------------
@@ -109,7 +111,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'ja_JP', // en_US|zh_TW|ja_JP
 
     /*
     |--------------------------------------------------------------------------
@@ -171,6 +173,11 @@ return [
 
         // jwt
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        // oapi generator
+        // https://vyuldashev.github.io/laravel-openapi/
+        Vyuldashev\LaravelOpenApi\OpenApiServiceProvider::class,
+        // phpstorm supplementation
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ])->toArray(),
 
     /*
