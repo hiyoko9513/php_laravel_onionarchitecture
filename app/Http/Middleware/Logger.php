@@ -14,19 +14,20 @@ final class Logger
     public function handle(Request $request, Closure $next): JsonResponse
     {
         Log::withContext([
-            'request-id' => uniqid('req-', false),
+            'request-id' => uniqid('req-', true),
             'user' => $request->user()?->id,
         ]);
 
-        Log::info($request->fullUrl(), [
+        Log::info($request->method() . ' ' . $request->fullUrl(), [
             'headers' => $request->headers->all(),
             'body' => $request->all(),
-            'method' => $request->method(),
         ]);
 
         $response = $next($request);
 
-        Log::info($response->getData(true));
+        Log::info($response->status(), [
+            'response' => $response->getData(true)
+        ]);
 
         return $response;
     }
