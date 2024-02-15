@@ -22,5 +22,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // error throw n+1 problem etc...
+        Model::shouldBeStrict(!$this->app->isProduction());
     }
 }
