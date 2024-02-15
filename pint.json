@@ -16,7 +16,6 @@
         "declare_parentheses": true,
         "declare_strict_types": true,
         "indentation_type": true,
-        "final_class": true,
         "global_namespace_import": {
             "import_classes": true,
             "import_constants": true,
