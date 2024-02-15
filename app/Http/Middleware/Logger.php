@@ -15,6 +15,7 @@ final class Logger
     {
         Log::withContext([
             'request-id' => uniqid('req-', true),
+            'client-ip' => $request->getClientIp(),
             'user' => $request->user()?->id,
         ]);
 
