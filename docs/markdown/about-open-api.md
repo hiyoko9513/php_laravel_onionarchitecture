@@ -16,6 +16,7 @@
     - oapi generate
 - メリットとデメリット(簡易)
     - apiの実装が終わらないとフロントの開発が進まない
+    - documentが充実しておらず、コードから読むしかない
 
 ## oapiベース手順
 一応残しておく
@@ -23,7 +24,3 @@
 ```shell
 $ make docker/oapi/php/codegen
 ```
-
-## まとめ
-本gitはlaravelベース進める  
-将来的には反転しても良い
