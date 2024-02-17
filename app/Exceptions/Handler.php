@@ -1,21 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exceptions;
 
+use App\Exceptions\Common\ValidateException;
+use App\Exceptions\Model\Response;
+use App\Mail\Exception\ReportMail;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Mail;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
-class Handler extends ExceptionHandler
+final class Handler extends ExceptionHandler
 {
     /**
-     * The list of the inputs that are never flashed to the session on validation exceptions.
+     * A list of classes that are never reported to the session on validation exceptions.
      *
      * @var array<int, string>
      */
-    protected $dontFlash = [
-        'current_password',
-        'password',
-        'password_confirmation',
+    protected $dontReport = [
+        \Illuminate\Auth\AuthenticationException::class,
+        \Illuminate\Validation\ValidationException::class,
+        \Illuminate\Auth\Access\AuthorizationException::class,
+        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
+        \Symfony\Component\HttpKernel\Exception\HttpException::class,
     ];
 
     /**
@@ -33,11 +42,50 @@ class Handler extends ExceptionHandler
         return $this->prepareJsonResponse($request, $e);
     }
 
-    protected function convertExceptionToArray(Throwable $e): array
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param Throwable                $e
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws Throwable
+     */
+    public function render($request, Throwable $e): \Symfony\Component\HttpFoundation\Response
     {
-        return [
-            'message' => $e->getMessage(),
-            'status_code' => $this->isHttpException($e) ? $e->getStatusCode() : 500,
-        ];
+        $this->renderable(function (Throwable $e) {
+            if ($e instanceof HttpException) {
+                $cast = static fn($orig): HttpException => $orig;
+                $httpEx = $cast($e);
+
+                $message = $httpEx->getMessage();
+                if ($e instanceof ValidateException) {
+                    $message = $e->getValidateMessages();
+                }
+
+                return (new Response($httpEx->getStatusCode(), $httpEx->getCode(), $message))->toJSON();
+            }
+
+            return (new Response(500))->toJSON();
+        });
+
+        return parent::render($request, $e);
+    }
+
+    /**
+     * Report or log an exception.
+     *
+     * @param Throwable $e
+     * @return void
+     *
+     * @throws Throwable
+     */
+    public function report(Throwable $e): void
+    {
+        if ($this->shouldReport($e)) {
+            Mail::send(new ReportMail($e));
+        }
+
+        parent::report($e);
     }
 }
