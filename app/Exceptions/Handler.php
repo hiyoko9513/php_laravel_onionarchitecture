@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Exceptions;
 
-use App\Exceptions\Common\ValidateException;
-use App\Exceptions\Model\Response;
+use App\Exceptions\Response\Response;
 use App\Mail\Exception\ReportMail;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
@@ -45,8 +45,8 @@ final class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param Throwable                $e
+     * @param Request   $request
+     * @param Throwable $e
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws Throwable
