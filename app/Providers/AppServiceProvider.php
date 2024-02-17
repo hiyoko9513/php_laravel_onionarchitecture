@@ -14,7 +14,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        \Laravel\Sanctum\Sanctum::ignoreMigrations(); // Sanctum無効化
     }
 
     /**
