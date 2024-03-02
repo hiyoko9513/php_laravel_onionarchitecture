@@ -23,5 +23,5 @@ Route::post('/login', [AuthorisationController::class, 'login'])->name('login');
 //
 Route::group(['middleware' => ['jwt.auth']], static function () {
     Route::post('/logout', [AuthorisationController::class, 'logout'])->name('logout');
-    // Route::post('/refresh', [AuthorisationController::class, 'refresh'])->name('refresh');
+    Route::post('/refresh', [AuthorisationController::class, 'refresh'])->name('refresh');
 });

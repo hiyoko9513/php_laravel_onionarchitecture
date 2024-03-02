@@ -7,7 +7,9 @@ namespace App\Application\Services\Auth;
 use App\Domain\Models\Auth\Authorisation;
 use App\Domain\Models\Auth\Login;
 use App\Domain\Models\Auth\Logout;
+use App\Domain\Models\Auth\Refresh;
 use App\Domain\Models\Auth\Register;
+use App\Domain\Models\Users\User;
 use App\Domain\Repositories\UserRepository;
 use App\Exceptions\Auth\UserCreateException;
 use App\Exceptions\UnauthorizedException;
@@ -77,10 +79,35 @@ class AuthorisationService
         return new Login($user, $authorisation);
     }
 
+    /**
+     * logout user
+     *
+     * @return Logout
+     */
     public function logout(): Logout
     {
         Auth::guard('api')->logout();
 
         return new Logout();
     }
+
+    /**
+     * token refresh
+     *
+     * @return Refresh
+     */
+    public function refresh() : Refresh
+    {
+        $token = Auth::refresh();
+        if (!$token) {
+            LOG::error('Auth refresh failed');
+            throw new UnauthorizedException();
+        }
+
+        $user = new User(Auth::user());
+        $authorisation = new Authorisation($token);
+
+        return new Refresh($user, $authorisation);
+    }
+
 }
