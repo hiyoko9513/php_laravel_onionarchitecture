@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Auth\AuthorisationController;
+use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthorisationController::class, 'register'])->name('register');
 Route::post('/login', [AuthorisationController::class, 'login'])->name('login');
-// Route::post('/password/forgot',[AuthController::class,'passwordForgot'])->name('password.forgot'); // todo tokenをメールに付属する
-// Route::post('/password/reset', [AuthController::class, 'passwordReset'])->name('password.reset'); // todo tokenを受け取る
+Route::post('/password/forgot',[PasswordController::class,'forgot'])->name('password.forgot');
+Route::post('/password/reset', [PasswordController::class, 'reset'])->name('password.reset');
 Route::get('/users/{originalId}/valid', [UserController::class, 'valid'])->name('user.valid');
 Route::group(['middleware' => ['jwt.auth']], static function () {
     Route::post('/logout', [AuthorisationController::class, 'logout'])->name('logout');

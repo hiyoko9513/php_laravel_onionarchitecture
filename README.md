@@ -75,6 +75,8 @@ $ composer dump-autoload
 - 同一オリジンポリシー(cors以外で)
 - pint gitaction
 - !マーク pint
+- ER図生成
+- APIドキュメント
 
 ## 考慮
 - SSO
