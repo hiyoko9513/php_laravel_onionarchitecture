@@ -71,7 +71,6 @@ $ composer dump-autoload
 - 日付フォーマットは規格以外のものを返す(フロントで適宜フォーマットすること)
 
 ## todo
-- rate limit設定
 - エラーレポートにリクエストIDを設置
 - 同一オリジンポリシー(cors以外で)
 - pint gitaction
