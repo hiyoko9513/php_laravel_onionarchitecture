@@ -9,4 +9,6 @@ use App\Domain\Models\Users\User;
 interface UserRepository
 {
     public function create(array $input): User;
+
+    public function updateWithId(string $id, array $input): User;
 }

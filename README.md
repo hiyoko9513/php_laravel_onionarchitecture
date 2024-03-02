@@ -61,7 +61,7 @@ $ composer dump-autoload
 - config設定(必要なもののみ)
 - プルリクによってリリースノートを作成し、自動バージョニングを行う
 - 共通例外処理(validationエラー処理)
-- 
+- オニオンアーキテクチャ
 
 ## 禁忌(覚書)
 - strtotimeの使用(2038年問題)
@@ -71,18 +71,17 @@ $ composer dump-autoload
 - 日付フォーマットは規格以外のものを返す(フロントで適宜フォーマットすること)
 
 ## todo
-- jwtの期限を返す
-- オリジナルID＋ラストログイン
 - rate limit設定
 - エラーレポートにリクエストIDを設置
-- nginxで500系エラーをjsonで返却
 - 同一オリジンポリシー(cors以外で)
+- pint gitaction
+- !マーク pint
 
 ## 考慮
 - SSO
 - 2FA
 - unit test(+ about tests mock=>mockery https://www.youtube.com/watch?v=ZSjc2tqUmmI)
-- git actions(test,pint...)
+- git actions(test...)
 - seeder
 - maintenance mode
 - sanctum

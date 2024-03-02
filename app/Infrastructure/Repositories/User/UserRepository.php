@@ -22,4 +22,12 @@ class UserRepository implements iRepo
 
         return new User($userEloquent);
     }
+
+    public function updateWithId(string $id, array $input): User
+    {
+        $userEloquent = UserEloquent::findOrFail($id);
+        $userEloquent->update($input);
+
+        return new User($userEloquent);
+    }
 }
