@@ -27,7 +27,7 @@ final class Logger
         $response = $next($request);
 
         Log::info($response->status(), [
-            'response' => $response->getData(true)
+            'response' => $response->getData(true),
         ]);
 
         return $response;

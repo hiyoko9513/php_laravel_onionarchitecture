@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mail\Exception;
 
 use AllowDynamicProperties;
@@ -8,17 +10,18 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Throwable;
 
 #[AllowDynamicProperties] class ReportMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public \Throwable $exception;
+    public Throwable $exception;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(\Throwable $e)
+    public function __construct(Throwable $e)
     {
         $this->error = $e;
     }

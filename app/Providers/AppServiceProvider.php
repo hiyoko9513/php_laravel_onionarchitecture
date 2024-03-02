@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Domain\Repositories\UserRepository as iUserRepo;
+use App\Infrastructure\Repositories\User\UserRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,6 +17,11 @@ final class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         \Laravel\Sanctum\Sanctum::ignoreMigrations(); // Sanctum無効化
+
+        $this->app->bind(
+            iUserRepo::class,
+            UserRepository::class,
+        );
     }
 
     /**
@@ -23,6 +30,6 @@ final class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // error throw n+1 problem etc...
-        Model::shouldBeStrict(!$this->app->isProduction());
+        Model::shouldBeStrict(! $this->app->isProduction());
     }
 }

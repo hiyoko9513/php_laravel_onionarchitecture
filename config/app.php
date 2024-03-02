@@ -173,9 +173,6 @@ return [
 
         // jwt
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-        // oapi generator
-        // https://vyuldashev.github.io/laravel-openapi/
-        Vyuldashev\LaravelOpenApi\OpenApiServiceProvider::class,
         // phpstorm supplementation
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ])->toArray(),

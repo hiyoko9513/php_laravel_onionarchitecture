@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Middleware;
+
+use Closure;
 
 class UnescapeJsonResponse
 {
-    public function handle($request, \Closure $next)
+    public function handle($request, Closure $next)
     {
         $response = $next($request);
 

@@ -7,6 +7,7 @@ namespace App\Exceptions;
 use App\Exceptions\Response\Response;
 use App\Mail\Exception\ReportMail;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -20,11 +21,19 @@ final class Handler extends ExceptionHandler
      * @var array<int, string>
      */
     protected $dontReport = [
+        // auth
         \Illuminate\Auth\AuthenticationException::class,
-        \Illuminate\Validation\ValidationException::class,
         \Illuminate\Auth\Access\AuthorizationException::class,
+
+        // http
+        HttpException::class,
+        \Illuminate\Http\Exceptions\HttpResponseException::class,
+
+        // other
+        \Illuminate\Validation\ValidationException::class,
         \Illuminate\Database\Eloquent\ModelNotFoundException::class,
-        \Symfony\Component\HttpKernel\Exception\HttpException::class,
+        \Symfony\Component\HttpFoundation\Exception\SuspiciousOperationException::class,
+        \Illuminate\Session\TokenMismatchException::class,
     ];
 
     /**
@@ -32,12 +41,12 @@ final class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
+        // $this->reportable(function (Throwable $e) {
+        //     //
+        // });
     }
 
-    protected function prepareResponse($request, Throwable $e): \Illuminate\Http\JsonResponse
+    protected function prepareResponse($request, Throwable $e): JsonResponse
     {
         return $this->prepareJsonResponse($request, $e);
     }
@@ -45,9 +54,7 @@ final class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param Request   $request
-     * @param Throwable $e
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
      *
      * @throws Throwable
      */
@@ -55,7 +62,7 @@ final class Handler extends ExceptionHandler
     {
         $this->renderable(function (Throwable $e) {
             if ($e instanceof HttpException) {
-                $cast = static fn($orig): HttpException => $orig;
+                $cast = static fn ($orig): HttpException => $orig;
                 $httpEx = $cast($e);
 
                 $message = $httpEx->getMessage();
@@ -75,8 +82,6 @@ final class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param Throwable $e
-     * @return void
      *
      * @throws Throwable
      */
