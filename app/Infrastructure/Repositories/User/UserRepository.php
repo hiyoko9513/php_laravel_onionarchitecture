@@ -22,4 +22,19 @@ class UserRepository implements iRepo
 
         return new User($userEloquent);
     }
+
+    /**
+     * Updates a User with the specified ID.
+     *
+     * @param string $id    The ID of the User to update.
+     * @param array  $input The input array containing the updated user data.
+     * @return User The updated User object.
+     */
+    public function updateWithId(string $id, array $input): User
+    {
+        $userEloquent = UserEloquent::findOrFail($id);
+        $userEloquent->update($input);
+
+        return new User($userEloquent);
+    }
 }

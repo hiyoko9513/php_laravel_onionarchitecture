@@ -5,10 +5,15 @@ declare(strict_types=1);
 namespace App\Application\Services\Auth;
 
 use App\Domain\Models\Auth\Authorisation;
+use App\Domain\Models\Auth\Login;
+use App\Domain\Models\Auth\Logout;
+use App\Domain\Models\Auth\Refresh;
 use App\Domain\Models\Auth\Register;
+use App\Domain\Models\Users\User;
 use App\Domain\Repositories\UserRepository;
 use App\Exceptions\Auth\UserCreateException;
 use App\Exceptions\UnauthorizedException;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -54,4 +59,55 @@ class AuthorisationService
 
         return new Register($user, $authorisation);
     }
+
+    /**
+     * login user
+     *
+     * @throws UnauthorizedException
+     */
+    public function login(LoginRequest $requests): Login
+    {
+        $token = Auth::attempt($requests->credentialArray());
+        if (! $token) {
+            LOG::error('Auth failed', ['input data' => $requests->credentialArray()]);
+            throw new UnauthorizedException();
+        }
+
+        $user = $this->userRepository->updateWithId(Auth::user()->id, $requests->toLastLoginInput());
+        $authorisation = new Authorisation($token);
+
+        return new Login($user, $authorisation);
+    }
+
+    /**
+     * logout user
+     *
+     * @return Logout
+     */
+    public function logout(): Logout
+    {
+        Auth::guard('api')->logout();
+
+        return new Logout();
+    }
+
+    /**
+     * token refresh
+     *
+     * @return Refresh
+     */
+    public function refresh() : Refresh
+    {
+        $token = Auth::refresh();
+        if (!$token) {
+            LOG::error('Auth refresh failed');
+            throw new UnauthorizedException();
+        }
+
+        $user = new User(Auth::user());
+        $authorisation = new Authorisation($token);
+
+        return new Refresh($user, $authorisation);
+    }
+
 }
