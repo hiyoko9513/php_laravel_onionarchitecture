@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exceptions\Response;
 
 use Illuminate\Http\JsonResponse;
@@ -8,29 +10,21 @@ class Response
 {
     /**
      * status code
-     *
-     * @var int
      */
     protected int $statusCode;
 
     /**
      * error code
-     *
-     * @var int
      */
     protected int $code;
 
     /**
      * raw error message
-     *
-     * @var string|array
      */
     protected string|array $rawErrorMessage;
 
     /**
      * error status codes
-     *
-     * @var array
      */
     protected array $codeToMessage = [
         400 => 'Bad Request',
@@ -54,8 +48,6 @@ class Response
 
     /**
      * get error message
-     *
-     * @return string|array
      */
     private function getMessage(): string|array
     {
@@ -83,8 +75,6 @@ class Response
 
     /**
      * whether it is a registered status code or not
-     *
-     * @return bool
      */
     private function isValidStatusCode(): bool
     {

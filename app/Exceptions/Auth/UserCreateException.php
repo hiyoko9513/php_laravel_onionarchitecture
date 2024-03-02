@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Exceptions;
+namespace App\Exceptions\Auth;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
-class HiyokoException extends HttpException
+class UserCreateException extends HttpException
 {
-    protected int $statusCode = 402;
+    protected int $statusCode = 400;
 
-    protected $message = 'hiyoko dayo!';
+    protected $message = '';
 
     protected $code = 1;
 

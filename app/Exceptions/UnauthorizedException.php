@@ -7,13 +7,11 @@ namespace App\Exceptions;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
-class HiyokoException extends HttpException
+class UnauthorizedException extends HttpException
 {
-    protected int $statusCode = 402;
+    protected int $statusCode = 401;
 
-    protected $message = 'hiyoko dayo!';
-
-    protected $code = 1;
+    protected $code = 0;
 
     public function __construct(?Throwable $previous = null, array $headers = [])
     {
