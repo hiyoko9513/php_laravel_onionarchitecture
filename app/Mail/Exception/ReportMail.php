@@ -10,6 +10,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 #[AllowDynamicProperties] class ReportMail extends Mailable
@@ -58,15 +59,16 @@ use Throwable;
 
     public function build(): ReportMail
     {
-        return $this->to('report@hiyoko.com')
+        return $this->to(env('MAIL_TO_ADDRESS_FOR_DEVELOPER'))
             ->with([
+                'requestId' => Log::sharedContext()['request-id'],
                 'jsonMessage' => $this->error->getMessage(),
                 'code' => $this->error->getCode() ?? 0,
             ]);
-        // ->cc('report@hiyoko.com')// cc
-        // ->bcc('report@hiyoko.com')// bcc
-        // ->subject('会員登録が完了しました')// 件名
-        // ->view('mail.WelcomeEmail')// 本文（HTMLメール）
-        // ->text('mail.WelcomeEmail_text')// 本文（プレーンテキストメール）
+        // ->cc('report@hiyoko.com')
+        // ->bcc('report@hiyoko.com')
+        // ->subject('会員登録が完了しました')
+        // ->view('mail.WelcomeEmail')// html mail
+        // ->text('mail.WelcomeEmail_text')// text mail
     }
 }

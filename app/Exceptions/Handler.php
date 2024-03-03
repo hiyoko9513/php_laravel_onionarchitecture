@@ -25,15 +25,30 @@ final class Handler extends ExceptionHandler
         \Illuminate\Auth\AuthenticationException::class,
         \Illuminate\Auth\Access\AuthorizationException::class,
 
-        // http
-        HttpException::class,
-        \Illuminate\Http\Exceptions\HttpResponseException::class,
-
         // other
         \Illuminate\Validation\ValidationException::class,
         \Illuminate\Database\Eloquent\ModelNotFoundException::class,
         \Symfony\Component\HttpFoundation\Exception\SuspiciousOperationException::class,
         \Illuminate\Session\TokenMismatchException::class,
+    ];
+
+    /**
+     * empty override
+     *
+     * @var array
+     */
+    protected $internalDontReport = [
+        // AuthenticationException::class,
+        // AuthorizationException::class,
+        // BackedEnumCaseNotFoundException::class,
+        // HttpException::class,
+        // HttpResponseException::class,
+        // ModelNotFoundException::class,
+        // MultipleRecordsFoundException::class,
+        // RecordsNotFoundException::class,
+        // SuspiciousOperationException::class,
+        // TokenMismatchException::class,
+        // ValidationException::class,
     ];
 
     /**
@@ -62,7 +77,7 @@ final class Handler extends ExceptionHandler
     {
         $this->renderable(function (Throwable $e) {
             if ($e instanceof HttpException) {
-                $cast = static fn ($orig): HttpException => $orig;
+                $cast = static fn($orig): HttpException => $orig;
                 $httpEx = $cast($e);
 
                 $message = $httpEx->getMessage();
@@ -81,7 +96,6 @@ final class Handler extends ExceptionHandler
 
     /**
      * Report or log an exception.
-     *
      *
      * @throws Throwable
      */
