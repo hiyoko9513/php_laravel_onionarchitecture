@@ -7,7 +7,7 @@ namespace App\Http\Requests\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-final class PasswordForgetRequest
+final class PasswordForgotRequest
 {
     /**
      * @var Request The object representing the HTTP request.

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Services\Auth;
 
-use App\Domain\Models\Auth\PasswordForget;
+use App\Domain\Models\Auth\PasswordForgot;
 use App\Exceptions\Auth\ResetUserPasswordException;
 use App\Exceptions\Auth\SendUserPasswordResetMailException;
 use Illuminate\Auth\Events\PasswordReset;
@@ -17,20 +17,20 @@ class PasswordService
      * Sends a password reset link to the given email addresses.
      *
      * @param array $email The email addresses to send the reset link.
-     * @return PasswordForget The password forget object.
+     * @return PasswordForgot The password forgot object.
      * @throws SendUserPasswordResetMailException If the reset link failed to be sent.
      */
-    public function forget(array $email): PasswordForget
+    public function forgot(array $email): PasswordForgot
     {
         $status = Password::sendResetLink($email);
         if ($status !== Password::RESET_LINK_SENT) {
             throw new SendUserPasswordResetMailException();
         }
 
-        return new PasswordForget();
+        return new PasswordForgot();
     }
 
-    public function reset(array $input): PasswordForget
+    public function reset(array $input): PasswordForgot
     {
         $status = Password::reset(
             $input,
@@ -45,6 +45,6 @@ class PasswordService
             throw new ResetUserPasswordException();
         }
 
-        return new PasswordForget();
+        return new PasswordForgot();
     }
 }
