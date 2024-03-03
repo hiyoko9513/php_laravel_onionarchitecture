@@ -1,4 +1,27 @@
 # laravel rest api onion-architecture
+## dir structure
+固有もの
+```text
+.
+├── app
+│   ├── Application // アプリケーション層
+│   │   └── Services
+│   │       └── Auth
+│   ├── Domain // ドメイン層
+│   │   ├── Models
+│   │   │   └── Auth
+│   │   └── Repositories
+│   │       └── UserRepository.php
+│   ├── Http // UI層
+│   │   └── Requests // リクエストモデル
+│   │       └── Auth
+│   ├── Infrastructures // インフラ層(永続化)
+│   │   └── Repositories
+│   │       └── Auth
+│   └── Util // 言語特有のユーティリティ
+└── docs //apiや自動生成docsを配置
+```
+
 ## First time only
 ```shell
 # コミットルール用
@@ -60,8 +83,7 @@ $ composer dump-autoload
 - 多言語用のファイルを配置(一部：要カスタマイズ)
 - config設定(必要なもののみ)
 - プルリクによってリリースノートを作成し、自動バージョニングを行う
-- 共通例外処理(validationエラー処理)
-- オニオンアーキテクチャ
+- api用の例外処理
 
 ## 禁忌(覚書)
 - strtotimeの使用(2038年問題)
@@ -70,11 +92,8 @@ $ composer dump-autoload
 - addMonthの月末使用
 - 日付フォーマットは規格以外のものを返す(フロントで適宜フォーマットすること)
 
-## todo
-- pint gitaction
-- オニオンアーキテクチャのフォルダー構成
-
 ## 考慮
+- mail notifications
 - SSO
 - 2FA
 - unit test(+ about tests mock=>mockery https://www.youtube.com/watch?v=ZSjc2tqUmmI)
