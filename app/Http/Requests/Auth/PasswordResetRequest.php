@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Auth;
 
-use App\Domain\Models\Users\UserStatus;
-use App\Util\Datetime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -27,7 +25,7 @@ final class PasswordResetRequest
     public function requestFilter(): array
     {
         return [
-            'token', 'email', 'password'
+            'token', 'email', 'password',
         ];
     }
 
@@ -51,6 +49,7 @@ final class PasswordResetRequest
     }
 
     public function toPasswordResetInput(): array
-    {return $this->request->only($this->requestFilter());
+    {
+        return $this->request->only($this->requestFilter());
     }
 }

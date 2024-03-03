@@ -18,7 +18,7 @@ final class UserExists
     public function toArray(): array
     {
         return [
-            $this->isExists
+            $this->isExists,
         ];
     }
 

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Auth;
 
-use App\Domain\Models\Users\UserStatus;
-use App\Util\Datetime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 

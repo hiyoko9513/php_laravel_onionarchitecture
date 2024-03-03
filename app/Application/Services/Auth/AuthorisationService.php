@@ -81,8 +81,6 @@ class AuthorisationService
 
     /**
      * logout user
-     *
-     * @return Logout
      */
     public function logout(): Logout
     {
@@ -93,13 +91,11 @@ class AuthorisationService
 
     /**
      * token refresh
-     *
-     * @return Refresh
      */
-    public function refresh() : Refresh
+    public function refresh(): Refresh
     {
         $token = Auth::refresh();
-        if (!$token) {
+        if (! $token) {
             LOG::error('Auth refresh failed');
             throw new UnauthorizedException();
         }
@@ -109,5 +105,4 @@ class AuthorisationService
 
         return new Refresh($user, $authorisation);
     }
-
 }

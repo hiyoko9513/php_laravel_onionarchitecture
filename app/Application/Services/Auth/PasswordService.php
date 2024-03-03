@@ -10,7 +10,6 @@ use App\Exceptions\Auth\SendUserPasswordResetMailException;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
 
 class PasswordService
 {
@@ -42,7 +41,7 @@ class PasswordService
             }
         );
 
-        if ($status !== Password::PASSWORD_RESET){
+        if ($status !== Password::PASSWORD_RESET) {
             throw new ResetUserPasswordException();
         }
 
