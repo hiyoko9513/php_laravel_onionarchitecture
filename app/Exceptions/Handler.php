@@ -6,15 +6,29 @@ namespace App\Exceptions;
 
 use App\Exceptions\Response\Response;
 use App\Mail\Exception\ReportMail;
+use App\Notifications\Exceptions\ReportNotification;
+use App\Notifications\Password\ResetUserNotification;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
 final class Handler extends ExceptionHandler
 {
+    use Notifiable;
+
+    public string $email;
+
+    public function __construct(Container $container)
+    {
+        $this->email = env('MAIL_TO_ADDRESS_FOR_DEVELOPER', 'emergency@hiyoko.com');
+        parent::__construct($container);
+    }
+
     /**
      * A list of classes that are never reported to the session on validation exceptions.
      *
@@ -102,7 +116,7 @@ final class Handler extends ExceptionHandler
     public function report(Throwable $e): void
     {
         if ($this->shouldReport($e)) {
-            Mail::send(new ReportMail($e));
+            $this->notify(new ReportNotification($e));
         }
 
         parent::report($e);
