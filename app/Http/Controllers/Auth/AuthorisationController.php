@@ -39,9 +39,6 @@ final class AuthorisationController extends Controller
 
     /**
      * login user
-     *
-     * @param Request $request
-     * @return JsonResponse
      */
     public function login(Request $request): JsonResponse
     {
@@ -55,8 +52,6 @@ final class AuthorisationController extends Controller
 
     /**
      * logout user
-     *
-     * @return JsonResponse
      */
     public function logout(): JsonResponse
     {
@@ -65,8 +60,6 @@ final class AuthorisationController extends Controller
 
     /**
      * token refresh
-     *
-     * @return JsonResponse
      */
     public function refresh(): JsonResponse
     {

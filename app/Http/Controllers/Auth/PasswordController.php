@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
-use App\Application\Services\Auth\AuthorisationService;
 use App\Application\Services\Auth\PasswordService;
 use App\Exceptions\ValidateException;
 use App\Http\Controllers\Controller;
@@ -25,9 +24,6 @@ final class PasswordController extends Controller
 
     /**
      * Send reset password email.
-     *
-     * @param Request $request
-     * @return JsonResponse
      */
     public function forgot(Request $request): JsonResponse
     {

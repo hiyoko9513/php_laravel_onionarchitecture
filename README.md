@@ -2,7 +2,7 @@
 ## First time only
 ```shell
 # コミットルール用
-$ make git/commit-template
+$ make git/commit-template[release-drafter.yml](.github%2Fworkflows%2Frelease-drafter.yml)
 
 # laravel用(環境依存有)
 $ composer install
@@ -71,7 +71,6 @@ $ composer dump-autoload
 - 日付フォーマットは規格以外のものを返す(フロントで適宜フォーマットすること)
 
 ## todo
-- 同一オリジンポリシー(cors以外で)
 - pint gitaction
 - オニオンアーキテクチャのフォルダー構成
 
@@ -89,6 +88,7 @@ $ composer dump-autoload
 - write db, read db settings
 - envoy(product deploy)
 - Migration Guide
+- Enforce preflight
 
 ## やりたいこと(本gitの趣旨とはかけ離れてしまうけど)
 - コマンドのテンプレート作成

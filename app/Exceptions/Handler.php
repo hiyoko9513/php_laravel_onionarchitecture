@@ -77,7 +77,7 @@ final class Handler extends ExceptionHandler
     {
         $this->renderable(function (Throwable $e) {
             if ($e instanceof HttpException) {
-                $cast = static fn($orig): HttpException => $orig;
+                $cast = static fn ($orig): HttpException => $orig;
                 $httpEx = $cast($e);
 
                 $message = $httpEx->getMessage();

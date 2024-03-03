@@ -7,6 +7,7 @@ namespace App\Mail\Exception;
 use AllowDynamicProperties;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -50,7 +51,7 @@ use Throwable;
     /**
      * Get the attachments for the message.
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * @return array<int, Attachment>
      */
     public function attachments(): array
     {
@@ -61,9 +62,9 @@ use Throwable;
     {
         return $this->to(env('MAIL_TO_ADDRESS_FOR_DEVELOPER'))
             ->with([
-                'requestId' => Log::sharedContext()['request-id'],
-                'jsonMessage' => $this->error->getMessage(),
-                'code' => $this->error->getCode() ?? 0,
+                'requestId'     => Log::sharedContext()['request-id'],
+                'jsonMessage'   => $this->error->getMessage(),
+                'code'          => $this->error->getCode() ?? 0,
             ]);
         // ->cc('report@hiyoko.com')
         // ->bcc('report@hiyoko.com')

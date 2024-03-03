@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications\Password;
 
 use Illuminate\Bus\Queueable;
@@ -37,7 +39,8 @@ class ResetUserNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $url = urldecode(env('FRONT_APP_URL') . '/password/reset/' . $this->token . '?email=' . $notifiable->email);
-        return (new MailMessage)
+
+        return (new MailMessage())
             ->subject(Lang::get('Reset Password Notification'))
             ->line(Lang::get('You are receiving this email because we received a password reset request for your account.'))
             ->action(Lang::get('Reset Password'), $url)
