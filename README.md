@@ -68,6 +68,7 @@ $ composer dump-autoload
 - [rest](./docs/markdown/rest.md)
 - [release drafter](./docs/markdown/release-drafter.md)
 - [api infra memo](./docs/markdown/infra-memo.md)
+- [laravel(MailMessage)](./docs/markdown/laravel/mail-message.md)
 
 ## やっていること
 - timestampの削除(2038年問題)
@@ -93,24 +94,22 @@ $ composer dump-autoload
 - 日付フォーマットは規格以外のものを返す(フロントで適宜フォーマットすること)
 
 ## 考慮
-- mail notifications
-- SSO
-- 2FA
+- user status(login etc...)
+- seeder factories()
+- write db, read db settings(master, slave)
+- request headers(accept, referer, X-XSRF-TOKEN)
+- envoy(product deploy)
+- Enforce preflight
+- sanctum
+- docs generator(https://scramble.dedoc.co, ER)
 - unit test(+ about tests mock=>mockery https://www.youtube.com/watch?v=ZSjc2tqUmmI)
 - git actions(test...)
-- seeder
-- maintenance mode
-- sanctum
-- request headers(accept, referer, X-XSRF-TOKEN)
-- user role
-- docs generator(https://scramble.dedoc.co, ER)
-- write db, read db settings
-- envoy(product deploy)
-- Migration Guide
-- Enforce preflight
 
-## やりたいこと(本gitの趣旨とはかけ離れてしまうけど)
+## やりたいこと
 - コマンドのテンプレート作成
 - スケージュールのテンプレート作成
 - ソケットサーバーのテンプレート作成
 - ブロードキャストのテンプレート作成
+- SSO
+- 2FA
+- user role
