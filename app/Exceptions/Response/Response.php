@@ -37,6 +37,7 @@ class Response
         429 => 'Too Many Requests',
         500 => 'Internal Server Error',
         503 => 'Service Unavailable',
+        504 => 'Gateway Timeout',
     ];
 
     public function __construct($statusCode, $code = 0, $rawErrorMessage = '')

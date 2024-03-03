@@ -62,9 +62,10 @@ use Throwable;
     {
         return $this->to(env('MAIL_TO_ADDRESS_FOR_DEVELOPER'))
             ->with([
-                'requestId'     => Log::sharedContext()['request-id'],
-                'jsonMessage'   => $this->error->getMessage(),
-                'code'          => $this->error->getCode() ?? 0,
+                'requestId' => array_key_exists('request-id', Log::sharedContext())
+                    ? Log::sharedContext()['request-id'] : 'none',
+                'jsonMessage' => $this->error->getMessage(),
+                'code' => $this->error->getCode() ?? 0,
             ]);
         // ->cc('report@hiyoko.com')
         // ->bcc('report@hiyoko.com')
