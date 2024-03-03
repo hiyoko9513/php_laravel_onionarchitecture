@@ -71,12 +71,9 @@ $ composer dump-autoload
 - 日付フォーマットは規格以外のものを返す(フロントで適宜フォーマットすること)
 
 ## todo
-- エラーレポートにリクエストIDを設置
 - 同一オリジンポリシー(cors以外で)
 - pint gitaction
-- !マーク pint
-- ER図生成
-- APIドキュメント
+- オニオンアーキテクチャのフォルダー構成
 
 ## 考慮
 - SSO
@@ -88,7 +85,7 @@ $ composer dump-autoload
 - sanctum
 - request headers(accept, referer, X-XSRF-TOKEN)
 - user role
-- api docs generator(https://scramble.dedoc.co)
+- docs generator(https://scramble.dedoc.co, ER)
 - write db, read db settings
 - envoy(product deploy)
 - Migration Guide

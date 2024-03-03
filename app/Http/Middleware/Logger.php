@@ -13,7 +13,7 @@ final class Logger
 {
     public function handle(Request $request, Closure $next): JsonResponse
     {
-        Log::withContext([
+        Log::shareContext([
             'request-id' => uniqid('req-', true),
             'client-ip' => $request->getClientIp(),
             'user' => $request->user()?->id,
