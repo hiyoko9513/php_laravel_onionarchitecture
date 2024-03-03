@@ -2,10 +2,9 @@ name: Pint Check
 
 on:
   pull_request:
+    types: [opened, reopened]
     paths:
       - '**.php'
-  pull_request:
-    types: [opened, reopened]
 
 permissions:
   contents: read
