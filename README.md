@@ -1,5 +1,5 @@
-# laravel rest api onion-architecture
-## dir structure
+# Laravel rest api onion-architecture
+## Dir structure
 固有もの
 ```text
 .
