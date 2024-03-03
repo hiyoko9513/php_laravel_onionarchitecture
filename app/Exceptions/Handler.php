@@ -8,12 +8,18 @@ use App\Exceptions\Response\Response;
 use App\Mail\Exception\ReportMail;
 use App\Notifications\Exceptions\ReportNotification;
 use App\Notifications\Password\ResetUserNotification;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Container\Container;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Exception\SuspiciousOperationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
@@ -36,14 +42,18 @@ final class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         // auth
-        \Illuminate\Auth\AuthenticationException::class,
-        \Illuminate\Auth\Access\AuthorizationException::class,
+        AuthenticationException::class,
+        AuthorizationException::class,
 
         // other
-        \Illuminate\Validation\ValidationException::class,
-        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
-        \Symfony\Component\HttpFoundation\Exception\SuspiciousOperationException::class,
-        \Illuminate\Session\TokenMismatchException::class,
+        ValidationException::class,
+        ModelNotFoundException::class,
+        SuspiciousOperationException::class,
+        TokenMismatchException::class,
+
+        // custom
+        ValidateException::class,
+        UnauthorizedException::class,
     ];
 
     /**
