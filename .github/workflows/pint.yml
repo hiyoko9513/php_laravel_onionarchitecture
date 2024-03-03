@@ -13,60 +13,11 @@ jobs:
   pint:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: laravel
-
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-      # 多重起動破棄
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.8.0
-        with:
-          access_token: ${{ github.token }}
-
-      - name: Install PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          extensions: intl, zip, pcntl, bcmath, gd, pdo_mysql, exif, redis, imagick, soap, xsl, gmp, opcache, sockets, memcached, apcu, mongodb, swoole, xdebug
-          coverage: pcov
-
-      - name: Install composer
-        run: composer install --prefer-dist --no-progress --no-suggest --ansi
-
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v40
-        with:
-          files: |
-            **/*.php
-          separator: " "
-          base_sha: main
-
-      - name: Remove 'laravel/' from paths
-        id: remove-laravel-path
-        run: |
-          changed_files="${{ steps.changed-files.outputs.all_changed_files }}"
-          modified_files=$(echo "$changed_files" | sed 's|laravel/||g')
-          echo "Modified PHP files: $modified_files"
-          echo "::set-output name=modified_files::$modified_files"
-
-      - name: Check if PHP files have changed
-        id: check-changed
-        run: |
-          if [ -z "${{ steps.remove-laravel-path.outputs.modified_files }}" ]; then
-            echo "No PHP files have changed"
-            echo "::set-output name=skip::true"
-          else
-            echo "Changed PHP files: ${{ steps.remove-laravel-path.outputs.modified_files }}"
-            echo "::set-output name=skip::false"
-          fi
-
-      - name: Run pint for Changed Files
-        if: ${{ steps.check-changed.outputs.skip == 'false' }}
-        run: vendor/bin/pint -v ${{ steps.remove-laravel-path.outputs.modified_files }}
+      - name: Dry run Pint
+        uses: aglipanci/laravel-pint-action@2.1.0
