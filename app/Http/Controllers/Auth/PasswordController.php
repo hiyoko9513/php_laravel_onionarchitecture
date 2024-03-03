@@ -7,11 +7,10 @@ namespace App\Http\Controllers\Auth;
 use App\Application\Services\Auth\PasswordService;
 use App\Exceptions\ValidateException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\PasswordForgetRequest;
+use App\Http\Requests\Auth\PasswordForgotRequest;
 use App\Http\Requests\Auth\PasswordResetRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
 
 final class PasswordController extends Controller
 {
@@ -27,12 +26,12 @@ final class PasswordController extends Controller
      */
     public function forgot(Request $request): JsonResponse
     {
-        $passwordForgetReq = new PasswordForgetRequest($request);
-        if ($passwordForgetReq->fails()) {
-            throw new ValidateException($passwordForgetReq->errors());
+        $passwordForgotReq = new PasswordForgotRequest($request);
+        if ($passwordForgotReq->fails()) {
+            throw new ValidateException($passwordForgotReq->errors());
         }
 
-        return $this->passwordService->forget($passwordForgetReq->getEmailArray())->responseJson();
+        return $this->passwordService->forgot($passwordForgotReq->getEmailArray())->responseJson();
     }
 
     /**

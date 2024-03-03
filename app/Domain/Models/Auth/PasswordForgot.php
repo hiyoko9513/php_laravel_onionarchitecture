@@ -6,7 +6,7 @@ namespace App\Domain\Models\Auth;
 
 use Illuminate\Http\JsonResponse;
 
-final class PasswordForget
+final class PasswordForgot
 {
     public function toArray(): array
     {
