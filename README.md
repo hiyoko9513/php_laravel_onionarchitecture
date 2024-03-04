@@ -1,23 +1,26 @@
 # Laravel rest api onion-architecture
 ## Dir structure
-固有もの
 ```text
 .
 ├── app
-│   ├── Application // アプリケーション層
+│   ├── Application // Application層
 │   │   └── Services
 │   │       └── Auth
-│   ├── Domain // ドメイン層
+│   │
+│   ├── Domain // Domain層
 │   │   ├── Models
 │   │   │   └── Auth
 │   │   └── Repositories
 │   │       └── UserRepository.php
-│   ├── Http // UI層
+│   │
+│   ├── Http // Presentation層
 │   │   └── Requests // リクエストモデル
 │   │       └── Auth
-│   ├── Infrastructures // インフラ層(永続化)
+│   │
+│   ├── Infrastructures // Infrastructure層
 │   │   └── Repositories
 │   │       └── Auth
+│   │
 │   └── Util // 言語特有のユーティリティ
 └── docs //apiや自動生成docsを配置
 ```
