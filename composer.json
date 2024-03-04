@@ -34,7 +34,8 @@
         "friendsofphp/php-cs-fixer": "^3.5",
         "roave/security-advisories": "dev-latest",
         "barryvdh/laravel-ide-helper": "^2.14",
-        "laravel/pint": "^1.13"
+        "laravel/pint": "^1.13",
+        "fakerphp/faker": "^1.23"
     },
     "autoload": {
         "psr-4": {
