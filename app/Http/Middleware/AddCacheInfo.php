@@ -19,7 +19,7 @@ class AddCacheInfo
     {
         $response = $next($request);
 
-        if (app()->environment('local')) {
+        if (app()->isLocal()) {
             return $response;
         }
 
