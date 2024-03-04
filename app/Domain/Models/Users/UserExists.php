@@ -15,15 +15,13 @@ final class UserExists
         $this->isExists = $isExists;
     }
 
-    public function toArray(): array
-    {
-        return [
-            $this->isExists,
-        ];
-    }
-
     public function responseJson(): JsonResponse
     {
-        return response()->json($this->toArray());
+        return response()->json([$this->isExists]);
+    }
+
+    public function responseJsonForUnregistered(): JsonResponse
+    {
+        return response()->json([!$this->isExists]);
     }
 }

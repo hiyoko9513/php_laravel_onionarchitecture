@@ -6,7 +6,7 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Support\Facades\Validator;
 
-final class ValidRequest
+final class UnregisteredRequest
 {
     protected \Illuminate\Validation\Validator $validator;
 
