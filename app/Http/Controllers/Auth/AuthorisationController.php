@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
-use App\Application\UseCases\Auth\AuthorisationUsecase;
+use App\Application\UseCases\Auth\AuthorisationUseCase;
 use App\Exceptions\ValidateException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
@@ -15,11 +15,11 @@ use Throwable;
 
 final class AuthorisationController extends Controller
 {
-    private AuthorisationUsecase $authorisationService;
+    private AuthorisationUseCase $authorisationUseCase;
 
-    public function __construct(AuthorisationUsecase $registerService)
+    public function __construct(AuthorisationUseCase $authorisationUseCase)
     {
-        $this->authorisationService = $registerService;
+        $this->authorisationUseCase = $authorisationUseCase;
     }
 
     /**
@@ -34,7 +34,7 @@ final class AuthorisationController extends Controller
             throw new ValidateException($registerReq->errors());
         }
 
-        return $this->authorisationService->register($registerReq)->responseJson();
+        return $this->authorisationUseCase->register($registerReq)->responseJson();
     }
 
     /**
@@ -47,7 +47,7 @@ final class AuthorisationController extends Controller
             throw new ValidateException($registerReq->errors());
         }
 
-        return $this->authorisationService->login($registerReq)->responseJson();
+        return $this->authorisationUseCase->login($registerReq)->responseJson();
     }
 
     /**
@@ -55,7 +55,7 @@ final class AuthorisationController extends Controller
      */
     public function logout(): JsonResponse
     {
-        return $this->authorisationService->logout()->responseJson();
+        return $this->authorisationUseCase->logout()->responseJson();
     }
 
     /**
@@ -63,6 +63,6 @@ final class AuthorisationController extends Controller
      */
     public function refresh(): JsonResponse
     {
-        return $this->authorisationService->refresh()->responseJson();
+        return $this->authorisationUseCase->refresh()->responseJson();
     }
 }

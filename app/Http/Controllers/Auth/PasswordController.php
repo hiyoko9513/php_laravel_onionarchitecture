@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
-use App\Application\UseCases\Auth\PasswordUsecase;
+use App\Application\UseCases\Auth\PasswordUseCase;
 use App\Exceptions\ValidateException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\PasswordForgotRequest;
@@ -14,11 +14,11 @@ use Illuminate\Http\Request;
 
 final class PasswordController extends Controller
 {
-    private PasswordUsecase $passwordService;
+    private PasswordUseCase $passwordUseCase;
 
-    public function __construct(PasswordUsecase $passwordService)
+    public function __construct(PasswordUseCase $passwordUseCase)
     {
-        $this->passwordService = $passwordService;
+        $this->passwordUseCase = $passwordUseCase;
     }
 
     /**
@@ -31,7 +31,7 @@ final class PasswordController extends Controller
             throw new ValidateException($passwordForgotReq->errors());
         }
 
-        return $this->passwordService->forgot($passwordForgotReq->getEmailArray())->responseJson();
+        return $this->passwordUseCase->forgot($passwordForgotReq->getEmailArray())->responseJson();
     }
 
     /**
@@ -48,6 +48,6 @@ final class PasswordController extends Controller
             throw new ValidateException($passwordResetReq->errors());
         }
 
-        return $this->passwordService->reset($passwordResetReq->toPasswordResetInput())->responseJson();
+        return $this->passwordUseCase->reset($passwordResetReq->toPasswordResetInput())->responseJson();
     }
 }
