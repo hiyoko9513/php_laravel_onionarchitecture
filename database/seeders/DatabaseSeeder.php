@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Domain\Models\Users\UserStatus;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 final class DatabaseSeeder extends Seeder
@@ -14,11 +15,31 @@ final class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Test User
+        User::factory()->create([
+            'original_id' => 'test_user',
+            'password' => bcrypt('test_password'),
+            'status' => UserStatus::ACTIVE,
+            'first_name' => 'Test',
+            'last_name' => 'User',
+            'email' => 'test@example.com',
+            'tel' => '123-456-7890',
+            'birthday' => '2000-01-01',
+            'last_login' => now(),
+        ]);
+        // Developer User
+        User::factory()->create([
+            'original_id' => 'dev_user',
+            'password' => bcrypt('dev_password'),
+            'status' => UserStatus::DEVELOPER,
+            'first_name' => 'Developer',
+            'last_name' => 'User',
+            'email' => 'developer@example.com',
+            'tel' => '098-765-4321',
+            'birthday' => '1990-01-01',
+            'last_login' => now(),
+        ]);
     }
 }

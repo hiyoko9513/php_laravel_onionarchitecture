@@ -86,6 +86,7 @@ $ composer dump-autoload
 - プルリクによってリリースノートを作成し、自動バージョニングを行う
 - api用の例外処理(詳細な例外は返さず汎用的な例外のみを返している。)
 - cache etagを使用
+- ユーザーステータスのロジック
 
 ## メモ
 - strtotimeの使用しない(2038年問題)
@@ -99,15 +100,12 @@ $ composer dump-autoload
 - 環境変数「TRUSTED_PROXIES」：ロードバランサー用
 
 ## 考慮
-- user status(login etc...)
-- seeder factories()
 - request headers(accept, referer, X-XSRF-TOKEN)
 - envoy(product deploy)
 - Enforce preflight
-- sanctum
 - docs generator(https://scramble.dedoc.co, ER)
 - unit test(+ about tests mock=>mockery https://www.youtube.com/watch?v=ZSjc2tqUmmI)
-- git actions(test...)
+- git actions(test.pint...)
 
 ## やりたいこと
 - コマンドのテンプレート作成
