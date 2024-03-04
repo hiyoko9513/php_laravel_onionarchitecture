@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Services\Auth;
+namespace App\Application\UseCases\Auth;
 
 use App\Domain\Models\Auth\Authorisation;
 use App\Domain\Models\Auth\Login;
@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class AuthorisationService
+class AuthorisationUseCase
 {
     private UserRepository $userRepository;
 

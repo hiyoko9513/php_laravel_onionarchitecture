@@ -2,16 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Services\Auth;
+namespace App\Application\UseCases\Auth;
 
 use App\Domain\Models\Auth\PasswordForgot;
-use App\Exceptions\Auth\ResetUserPasswordException;
 use App\Exceptions\Auth\SendUserPasswordResetMailException;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 
-class PasswordService
+class PasswordUseCase
 {
     /**
      * Sends a password reset link to the given email addresses.

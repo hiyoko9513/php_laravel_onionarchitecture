@@ -1,24 +1,29 @@
 # Laravel rest api onion-architecture
+
 ## Dir structure
+
+todo unittest git actions
+
 ```text
 .
 ├── app
 │   ├── Application // Application層
-│   │   └── Services
+│   │   ├── Services // domain serviceでは表現出来ないもの
+│   │   └── UseCases
 │   │       └── Auth
 │   │
 │   ├── Domain // Domain層
-│   │   ├── Models
+│   │   ├── Models // entity等も全てここ
 │   │   │   └── Auth
-│   │   └── Repositories
+│   │   └── Repositories // interface
 │   │       └── UserRepository.php
 │   │
 │   ├── Http // Presentation層
-│   │   └── Requests // リクエストモデル
+│   │   └── Requests // request model
 │   │       └── Auth
 │   │
 │   ├── Infrastructures // Infrastructure層
-│   │   └── Repositories
+│   │   └── Repositories // eloquentを使用したDB操作
 │   │       └── Auth
 │   │
 │   └── Util // 言語特有のユーティリティ
@@ -26,6 +31,7 @@
 ```
 
 ## First time only
+
 ```shell
 # コミットルール用
 $ make git/commit-template
@@ -42,11 +48,13 @@ $ php artisan migrate:fresh --seed
 ```
 
 ## When committing
+
 ```shell
 $ ./vendor/bin/pint
 ```
 
 ## As necessary
+
 ```shell
 # when code updated
 ## Model
@@ -65,6 +73,7 @@ $ php artisan generate:erd docs/er/diagram.png
 ```
 
 ## Documents
+
 - [Git Commit Rule](./docs/markdown/git-commit.md)
 - [jwtの導入覚書](./docs/markdown/jwt-install.md)
 - [open api選定](./docs/markdown/about-open-api.md)
@@ -77,6 +86,7 @@ $ php artisan generate:erd docs/er/diagram.png
 - api document(postman): ./docs/postman/template.postman_collection.json
 
 ## やっていること
+
 - timestampの削除(2038年問題)
 - emoji prefix
 - oasのテンプレート配置
@@ -97,6 +107,7 @@ $ php artisan generate:erd docs/er/diagram.png
 - er図の自動生成(https://github.com/beyondcode/laravel-er-diagram-generator)
 
 ## メモ
+
 - strtotimeの使用しない(2038年問題)
 - date関数の使用しない(2038年問題)
 - mysqlでtimestampの使用しない(2038年問題)
@@ -107,11 +118,8 @@ $ php artisan generate:erd docs/er/diagram.png
 - トークンのリフレッシュタイミングは「75% of token lifetime」
 - 環境変数「TRUSTED_PROXIES」：ロードバランサー用
 
-## 考慮
-- unit test(+ about tests mock=>mockery https://www.youtube.com/watch?v=ZSjc2tqUmmI)
-- git actions(test.pint...)
-
 ## やりたいこと
+
 - コマンドのテンプレート作成
 - スケージュールのテンプレート作成
 - ソケットサーバーのテンプレート作成

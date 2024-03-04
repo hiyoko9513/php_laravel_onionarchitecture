@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
-use App\Application\Services\Auth\PasswordService;
+use App\Application\UseCases\Auth\PasswordUsecase;
 use App\Exceptions\ValidateException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\PasswordForgotRequest;
@@ -14,9 +14,9 @@ use Illuminate\Http\Request;
 
 final class PasswordController extends Controller
 {
-    private PasswordService $passwordService;
+    private PasswordUsecase $passwordService;
 
-    public function __construct(PasswordService $passwordService)
+    public function __construct(PasswordUsecase $passwordService)
     {
         $this->passwordService = $passwordService;
     }

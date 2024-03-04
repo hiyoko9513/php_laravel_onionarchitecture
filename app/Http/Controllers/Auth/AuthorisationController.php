@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
-use App\Application\Services\Auth\AuthorisationService;
+use App\Application\UseCases\Auth\AuthorisationUsecase;
 use App\Exceptions\ValidateException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
@@ -15,9 +15,9 @@ use Throwable;
 
 final class AuthorisationController extends Controller
 {
-    private AuthorisationService $authorisationService;
+    private AuthorisationUsecase $authorisationService;
 
-    public function __construct(AuthorisationService $registerService)
+    public function __construct(AuthorisationUsecase $registerService)
     {
         $this->authorisationService = $registerService;
     }
