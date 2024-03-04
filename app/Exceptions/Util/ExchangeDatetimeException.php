@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Exceptions\Auth;
+namespace App\Exceptions\Util;
 
 use App\Exceptions\ErrorCodes;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
-class UserCreateException extends HttpException
+class ExchangeDatetimeException extends HttpException
 {
-    protected int $statusCode = 400;
+    protected int $statusCode = 500;
 
-    protected $message = 'UserCreateException';
+    protected $message = 'Failed Exchange Datetime';
 
-    protected $code = ErrorCodes::USER_CREATION_FAILED->value;
+    protected $code = ErrorCodes::EXCHANGE_DATETIME_FAILED->value;
 
     public function __construct(?Throwable $previous = null, array $headers = [])
     {

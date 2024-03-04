@@ -25,7 +25,7 @@
 ## First time only
 ```shell
 # コミットルール用
-$ make git/commit-template[release-drafter.yml](.github%2Fworkflows%2Frelease-drafter.yml)
+$ make git/commit-template
 
 # laravel用(環境依存有)
 $ composer install
@@ -84,19 +84,25 @@ $ composer dump-autoload
 - 多言語用のファイルを配置(一部：要カスタマイズ)
 - config設定(必要なもののみ)
 - プルリクによってリリースノートを作成し、自動バージョニングを行う
-- api用の例外処理
+- api用の例外処理(詳細な例外は返さず汎用的な例外のみを返している。)
 
-## 禁忌(覚書)
-- strtotimeの使用(2038年問題)
-- date関数の使用(2038年問題)
-- mysqlでtimestampの使用(2038年問題)
-- addMonthの月末使用
+## メモ
+- strtotimeの使用しない(2038年問題)
+- date関数の使用しない(2038年問題)
+- mysqlでtimestampの使用しない(2038年問題)
+- addMonthの月末使用しない
 - 日付フォーマットは規格以外のものを返す(フロントで適宜フォーマットすること)
+- 一般公開APIの場合、jsonの命名をsnake_caseに変更する(難しい話)
+- paging情報はheaderに格納する
+- トークンのリフレッシュタイミングは「75% of token lifetime」
+- 環境変数「TRUSTED_PROXIES」：ロードバランサー用
 
 ## 考慮
+- loginとrefreshで返しているラストログインフォーマットが異なる
+- リフレッシュトークンとアクセストークン
+- date header gmtが入っている
 - user status(login etc...)
 - seeder factories()
-- write db, read db settings(master, slave)
 - request headers(accept, referer, X-XSRF-TOKEN)
 - envoy(product deploy)
 - Enforce preflight
@@ -104,6 +110,20 @@ $ composer dump-autoload
 - docs generator(https://scramble.dedoc.co, ER)
 - unit test(+ about tests mock=>mockery https://www.youtube.com/watch?v=ZSjc2tqUmmI)
 - git actions(test...)
+
+キャッシュの情報をレスポンスヘッダに入れよう
+
+HTTP にはキャッシュのための機構が用意されています。API 開発者は、レスポンスにいくつかのヘッダを含め、リクエストのヘッダをバリデーションするだけで、キャッシュの恩恵に与れます。
+
+これについて、ETag を使うやり方と Last-Modified を使うやり方があります。
+
+ETag
+
+レスポンスを送る際に、レスポンス内容のハッシュかチェックサムを ETag ヘッダに含めます。つまりこのヘッダは、レスポンス内容に変更があった際に変わるものとなります。これを受け取ったクライアントは、レスポンス内容をキャッシュしつつ、今後同一 URL のリクエストを投げる際に、ETag の内容を If-None-Match ヘッダに含めるようにします。API は、ETag 値と If-None-Match の内容が一致していれば、レスポンス内容の代わりに 304 Not Modified というステータスコードを返します。
+
+Last-Modified
+
+これは基本的には ETag と同様の概念ですが、タイムスタンプを使う点が異なります。Last-Modified ヘッダには RFC 1123 で提案された形式の日時データが含まれていて、これを If-Modified-Since ヘッダの内容と比較することでキャッシュを制御します。注意点としては、HTTP の仕様では3つの異なる日時形式が定義されていて、API サーバはそのいずれの形式でも許容できるようにする考慮する必要があるということです。
 
 ## やりたいこと
 - コマンドのテンプレート作成

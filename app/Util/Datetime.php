@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Util;
 
+use App\Exceptions\Util\ExchangeDatetimeException;
 use DateTimeImmutable;
 use DateTimeInterface;
+use Exception;
 
 const DATE_FORMAT = 'Y-m-d';
 
@@ -13,8 +15,13 @@ final class Datetime
 {
     private DateTimeImmutable $datetime;
 
-    public function __construct(DateTimeImmutable $datetime = new DateTimeImmutable('now'))
+    public function __construct(string $dateString = 'now')
     {
+        try {
+            $datetime = new DateTimeImmutable($dateString);
+        } catch (Exception) {
+            throw new ExchangeDatetimeException();
+        }
         $this->datetime = $datetime;
     }
 

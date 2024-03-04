@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Domain\Models\Users;
 
 use App\Models\User as UserEloquent;
+use App\Util\Datetime;
+use DateTimeImmutable;
 
 final class User
 {
@@ -35,8 +37,8 @@ final class User
         $this->lastName = $userEloquent->last_name;
         $this->email = $userEloquent->email;
         $this->tel = $userEloquent->tel;
-        $this->birthday = $userEloquent->birthday;
-        $this->lastLogin = $userEloquent->last_login;
+        $this->birthday = (new Datetime($userEloquent->birthday))->toDateString();
+        $this->lastLogin = (new Datetime($userEloquent->last_login))->toRFC3339String();
     }
 
     public function toArray(): array

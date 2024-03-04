@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Exceptions\Auth;
 
-use App\Exceptions\BadRequestCodes;
+use App\Exceptions\ErrorCodes;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
@@ -14,7 +14,7 @@ class SendUserPasswordResetMailException extends HttpException
 
     protected $message = 'SendUserPasswordResetMailException';
 
-    protected $code = BadRequestCodes::SEND_USER_PASS_RESET_EMAIL_FAILED->value;
+    protected $code = ErrorCodes::SEND_USER_PASS_RESET_EMAIL_FAILED->value;
 
     public function __construct(?Throwable $previous = null, array $headers = [])
     {
