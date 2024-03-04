@@ -19,7 +19,7 @@ return [
 
     'paths' => ['*'],
 
-    'allowed_methods' => ['GET', 'POST', 'PUT', 'DELETE'],
+    'allowed_methods' => ['*'],
 
     'allowed_origins' => explode(',', env('FRONT_APP_URL')),
 

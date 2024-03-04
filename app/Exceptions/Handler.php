@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Exceptions;
 
+use App\Exceptions\Auth\SendUserPasswordResetMailException;
 use App\Exceptions\Response\Response;
 use App\Mail\Exception\ReportMail;
 use App\Notifications\Exceptions\ReportNotification;
@@ -54,7 +55,8 @@ final class Handler extends ExceptionHandler
         // custom
         ValidateException::class,
         UnauthorizedException::class,
-        UnauthorizedInvalidUserException::class
+        UnauthorizedInvalidUserException::class,
+        SendUserPasswordResetMailException::class,
     ];
 
     /**

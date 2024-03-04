@@ -32,7 +32,7 @@ class PasswordService
 
     public function reset(array $input): PasswordForgot
     {
-        $status = Password::reset(
+        Password::reset(
             $input,
             static function ($user, $password) {
                 $user->forceFill(['password' => Hash::make($password)]);
@@ -40,10 +40,6 @@ class PasswordService
                 event(new PasswordReset($user));
             }
         );
-
-        if ($status !== Password::PASSWORD_RESET) {
-            throw new ResetUserPasswordException();
-        }
 
         return new PasswordForgot();
     }

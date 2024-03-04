@@ -35,8 +35,7 @@ $ php artisan jwt:secret
 $ php artisan storage:link
 $ sudo chmod -R 775 bootstrap/cache && sudo chmod -R 775 storage
 $ sudo chown -R www-data:admin storage && sudo chown -R www-data:admin bootstrap/cache
-$ php artisan migrate:fresh
-$ php artisan db:seed --force
+$ php artisan migrate:fresh --seed
 ```
 
 ## When committing
@@ -87,6 +86,7 @@ $ composer dump-autoload
 - api用の例外処理(詳細な例外は返さず汎用的な例外のみを返している。)
 - cache etagを使用
 - ユーザーステータスのロジック
+- factoryとseederのテンプレート
 
 ## メモ
 - strtotimeの使用しない(2038年問題)
@@ -100,10 +100,7 @@ $ composer dump-autoload
 - 環境変数「TRUSTED_PROXIES」：ロードバランサー用
 
 ## 考慮
-- request headers(accept, referer, X-XSRF-TOKEN)
-- envoy(product deploy)
-- Enforce preflight
-- docs generator(https://scramble.dedoc.co, ER)
+- docs generator(ER)
 - unit test(+ about tests mock=>mockery https://www.youtube.com/watch?v=ZSjc2tqUmmI)
 - git actions(test.pint...)
 
