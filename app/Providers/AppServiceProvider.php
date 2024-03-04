@@ -22,6 +22,11 @@ final class AppServiceProvider extends ServiceProvider
             iUserRepo::class,
             UserRepository::class,
         );
+
+        // generate er
+        if ($this->app->isLocal()) {
+            $this->app->register(\BeyondCode\ErdGenerator\ErdGeneratorServiceProvider::class);
+        }
     }
 
     /**

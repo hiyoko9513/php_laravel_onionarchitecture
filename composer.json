@@ -1,22 +1,12 @@
 {
     "description": "hiyoko api",
     "keywords": [
-        "openapitools",
-        "openapi-generator",
-        "openapi",
         "php",
         "sdk",
         "rest",
         "api"
     ],
-    "homepage": "https://openapi-generator.tech",
-    "license": "unlicense",
-    "authors": [
-        {
-            "name": "OpenAPI",
-            "homepage": "https://openapi-generator.tech"
-        }
-    ],
+    "license": "MIT",
     "require": {
         "php": "^8.2",
         "ext-curl": "*",
@@ -25,7 +15,9 @@
         "guzzlehttp/guzzle": "^7.3",
         "guzzlehttp/psr7": "^1.7 || ^2.0",
         "tymon/jwt-auth": "^2.0",
+        "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
+        "laravel/tinker": "^2.8",
         "ext-pdo": "*"
     },
     "require-dev": {
@@ -33,9 +25,10 @@
         "spatie/laravel-ignition": "^2.0",
         "friendsofphp/php-cs-fixer": "^3.5",
         "roave/security-advisories": "dev-latest",
-        "barryvdh/laravel-ide-helper": "^2.14",
+        "barryvdh/laravel-ide-helper": "^3.0",
         "laravel/pint": "^1.13",
-        "fakerphp/faker": "^1.23"
+        "fakerphp/faker": "^1.23",
+        "beyondcode/laravel-er-diagram-generator": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -48,5 +41,21 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
-    }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

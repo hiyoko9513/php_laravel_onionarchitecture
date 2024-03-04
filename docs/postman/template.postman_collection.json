@@ -1,0 +1,921 @@
+{
+	"info": {
+		"_postman_id": "5b5e6284-67dd-44c1-9fdc-9bfac2a4168b",
+		"name": "php_laravel_onionarchitecture",
+		"description": "github\n\n[https://github.com/hiyoko9513/php_laravel_onionarchitecture](https://github.com/hiyoko9513/php_laravel_onionarchitecture)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32593155"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "password",
+					"item": [
+						{
+							"name": "forgot",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "test@example.com",
+											"description": "email"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/password/forgot",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"password",
+										"forgot"
+									]
+								},
+								"description": "Reset email is sent after execution"
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "email",
+													"value": "test@example.com",
+													"description": "email"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/password/forgot",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"password",
+												"forgot"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 04 Mar 2024 13:42:10 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "https://lvh.me"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\"\n}"
+								}
+							]
+						},
+						{
+							"name": "reset",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "token",
+											"value": "<token>",
+											"description": "Reset token sent via email",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "test@example.com",
+											"description": "email"
+										},
+										{
+											"key": "password",
+											"value": "test_password",
+											"description": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/password/reset",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"password",
+										"reset"
+									]
+								},
+								"description": "Update password"
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "token",
+													"value": "284a5330dd4c718ea1eabde4d27b7a82f291d91ed2d379d1d43d5fcef384973a",
+													"description": "Reset token sent via email",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "test@example.com",
+													"description": "email"
+												},
+												{
+													"key": "password",
+													"value": "test_password",
+													"description": "password",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/password/reset",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"password",
+												"reset"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 04 Mar 2024 13:51:06 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "https://lvh.me"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\"\n}"
+								}
+							]
+						}
+					],
+					"description": "Password related"
+				},
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// tokenの更新",
+									"const responseJson = pm.response.json();",
+									"if (pm.response.code === 201){",
+									"    pm.environment.set('token', responseJson.authorisation.token)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "original_id",
+									"value": "postman_id",
+									"description": "original id"
+								},
+								{
+									"key": "email",
+									"value": "postman@example.com",
+									"description": "email"
+								},
+								{
+									"key": "password",
+									"value": "postman_pass",
+									"description": "password"
+								},
+								{
+									"key": "first_name",
+									"value": "postman_f",
+									"description": "first name"
+								},
+								{
+									"key": "last_name",
+									"value": "postman_l",
+									"description": "last name"
+								},
+								{
+									"key": "tel",
+									"value": "00000000000",
+									"description": "phone number"
+								},
+								{
+									"key": "birthday",
+									"value": "2000-1-1",
+									"description": "birthday"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"register"
+							]
+						},
+						"description": "Register a user"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "original_id",
+											"value": "postman_id",
+											"description": "original id"
+										},
+										{
+											"key": "email",
+											"value": "postman@example.com",
+											"description": "email"
+										},
+										{
+											"key": "password",
+											"value": "postman_pass",
+											"description": "password"
+										},
+										{
+											"key": "first_name",
+											"value": "postman_f",
+											"description": "first name"
+										},
+										{
+											"key": "last_name",
+											"value": "postman_l",
+											"description": "last name"
+										},
+										{
+											"key": "tel",
+											"value": "00000000000",
+											"description": "phone number"
+										},
+										{
+											"key": "birthday",
+											"value": "2000-1-1",
+											"description": "birthday"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Mar 2024 13:55:37 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "https://lvh.me"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"originalId\": \"postman_id\",\n        \"status\": 1,\n        \"firstName\": \"postman_f\",\n        \"lastName\": \"postman_l\",\n        \"email\": \"postman@example.com\",\n        \"tel\": \"00000000000\",\n        \"birthday\": \"2000-01-01\",\n        \"lastLogin\": \"2024-03-04T22:55:36+09:00\"\n    },\n    \"authorisation\": {\n        \"token\": \"<token>\",\n        \"type\": \"bearer\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// tokenの更新",
+									"const responseJson = pm.response.json();",
+									"if (pm.response.code === 200){",
+									"    pm.environment.set('token', responseJson.authorisation.token)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "login_id",
+									"value": "test_user",
+									"description": "email or originalID"
+								},
+								{
+									"key": "password",
+									"value": "test_password",
+									"description": "password"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"login"
+							]
+						},
+						"description": "user login"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "login_id",
+											"value": "test_user"
+										},
+										{
+											"key": "password",
+											"value": "test_password"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Mar 2024 13:56:12 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "https://lvh.me"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"originalId\": \"test_user\",\n        \"status\": 1,\n        \"firstName\": \"Test\",\n        \"lastName\": \"User\",\n        \"email\": \"test@example.com\",\n        \"tel\": \"123-456-7890\",\n        \"birthday\": \"2000-01-01\",\n        \"lastLogin\": \"2024-03-04T22:56:11+09:00\"\n    },\n    \"authorisation\": {\n        \"token\": \"<token>\",\n        \"type\": \"bearer\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "refresh",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// tokenの更新",
+									"const responseJson = pm.response.json();",
+									"if (pm.response.code === 200){",
+									"    pm.environment.set('token', responseJson.authorisation.token)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/refresh",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"refresh"
+							]
+						},
+						"description": "user token refresh"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"refresh"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Mar 2024 13:57:52 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "https://lvh.me"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"originalId\": \"test_user\",\n        \"status\": 1,\n        \"firstName\": \"Test\",\n        \"lastName\": \"User\",\n        \"email\": \"test@example.com\",\n        \"tel\": \"123-456-7890\",\n        \"birthday\": \"2000-01-01\",\n        \"lastLogin\": \"2024-03-04T22:56:11+09:00\"\n    },\n    \"authorisation\": {\n        \"token\": \"<token>\",\n        \"type\": \"bearer\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"logout"
+							]
+						},
+						"description": "user logout"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Mar 2024 14:19:58 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "https://lvh.me"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Certification and Approval"
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "unregistered",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/users/postman_id/unregistered",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"postman_id",
+								"unregistered"
+							]
+						},
+						"description": "I can check if it is an unregistered originalID.\n\nReturns true for unregistered originalID."
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/users/postman_d/unregistered",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"postman_d",
+										"unregistered"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Mar 2024 14:14:30 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "https://lvh.me"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    true\n]"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "password_reser_token",
+			"value": "4269289951a1bc9484ea92043acc8fb36e77c6b02258a2cf7185dd2627af5ee1"
+		},
+		{
+			"key": "unused_original_id",
+			"value": "postman"
+		}
+	]
+}

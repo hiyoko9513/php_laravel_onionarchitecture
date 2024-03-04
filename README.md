@@ -56,6 +56,9 @@ $ php artisan ide-helper:meta
 ## clear cache()
 $ php artisan optimize:clear
 $ composer dump-autoload
+
+## generate er
+$ php artisan generate:erd docs/er/diagram.png
 ```
 
 ## Documents
@@ -68,6 +71,7 @@ $ composer dump-autoload
 - [release drafter](./docs/markdown/release-drafter.md)
 - [api infra memo](./docs/markdown/infra-memo.md)
 - [laravel(MailMessage)](./docs/markdown/laravel/mail-message.md)
+- api document(postman): ./docs/postman/template.postman_collection.json
 
 ## やっていること
 - timestampの削除(2038年問題)
@@ -87,6 +91,7 @@ $ composer dump-autoload
 - cache etagを使用
 - ユーザーステータスのロジック
 - factoryとseederのテンプレート
+- er図の自動生成(https://github.com/beyondcode/laravel-er-diagram-generator)
 
 ## メモ
 - strtotimeの使用しない(2038年問題)
@@ -100,7 +105,6 @@ $ composer dump-autoload
 - 環境変数「TRUSTED_PROXIES」：ロードバランサー用
 
 ## 考慮
-- docs generator(ER)
 - unit test(+ about tests mock=>mockery https://www.youtube.com/watch?v=ZSjc2tqUmmI)
 - git actions(test.pint...)
 
