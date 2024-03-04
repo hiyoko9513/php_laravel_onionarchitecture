@@ -19,6 +19,17 @@ class AddCacheInfo
     {
         $response = $next($request);
 
+        if (app()->environment('local')) {
+            return $response;
+        }
+
+        $this->setCacheHeaders($response);
+
+        return $response;
+    }
+
+    private function setCacheHeaders($response): void
+    {
         if (method_exists($response, 'header')) {
             $content = $response->getContent();
             $etag = md5($content);
@@ -26,7 +37,5 @@ class AddCacheInfo
             $response->header('ETag', $etag);
             $response->header('Cache-Control', 'private, must-revalidate');
         }
-
-        return $response;
     }
 }
