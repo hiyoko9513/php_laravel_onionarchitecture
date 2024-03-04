@@ -85,6 +85,7 @@ $ composer dump-autoload
 - config設定(必要なもののみ)
 - プルリクによってリリースノートを作成し、自動バージョニングを行う
 - api用の例外処理(詳細な例外は返さず汎用的な例外のみを返している。)
+- cache etagを使用
 
 ## メモ
 - strtotimeの使用しない(2038年問題)
@@ -98,7 +99,6 @@ $ composer dump-autoload
 - 環境変数「TRUSTED_PROXIES」：ロードバランサー用
 
 ## 考慮
-- loginとrefreshで返しているラストログインフォーマットが異なる
 - リフレッシュトークンとアクセストークン
 - date header gmtが入っている
 - user status(login etc...)
@@ -110,20 +110,6 @@ $ composer dump-autoload
 - docs generator(https://scramble.dedoc.co, ER)
 - unit test(+ about tests mock=>mockery https://www.youtube.com/watch?v=ZSjc2tqUmmI)
 - git actions(test...)
-
-キャッシュの情報をレスポンスヘッダに入れよう
-
-HTTP にはキャッシュのための機構が用意されています。API 開発者は、レスポンスにいくつかのヘッダを含め、リクエストのヘッダをバリデーションするだけで、キャッシュの恩恵に与れます。
-
-これについて、ETag を使うやり方と Last-Modified を使うやり方があります。
-
-ETag
-
-レスポンスを送る際に、レスポンス内容のハッシュかチェックサムを ETag ヘッダに含めます。つまりこのヘッダは、レスポンス内容に変更があった際に変わるものとなります。これを受け取ったクライアントは、レスポンス内容をキャッシュしつつ、今後同一 URL のリクエストを投げる際に、ETag の内容を If-None-Match ヘッダに含めるようにします。API は、ETag 値と If-None-Match の内容が一致していれば、レスポンス内容の代わりに 304 Not Modified というステータスコードを返します。
-
-Last-Modified
-
-これは基本的には ETag と同様の概念ですが、タイムスタンプを使う点が異なります。Last-Modified ヘッダには RFC 1123 で提案された形式の日時データが含まれていて、これを If-Modified-Since ヘッダの内容と比較することでキャッシュを制御します。注意点としては、HTTP の仕様では3つの異なる日時形式が定義されていて、API サーバはそのいずれの形式でも許容できるようにする考慮する必要があるということです。
 
 ## やりたいこと
 - コマンドのテンプレート作成
