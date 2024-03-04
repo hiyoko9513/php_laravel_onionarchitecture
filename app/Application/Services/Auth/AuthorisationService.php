@@ -10,9 +10,11 @@ use App\Domain\Models\Auth\Logout;
 use App\Domain\Models\Auth\Refresh;
 use App\Domain\Models\Auth\Register;
 use App\Domain\Models\Users\User;
+use App\Domain\Models\Users\UserStatus;
 use App\Domain\Repositories\UserRepository;
 use App\Exceptions\Auth\UserCreateException;
 use App\Exceptions\UnauthorizedException;
+use App\Exceptions\UnauthorizedInvalidUserException;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
@@ -71,6 +73,11 @@ class AuthorisationService
         if (! $token) {
             LOG::error('Auth failed', ['input data' => $requests->credentialArray()]);
             throw new UnauthorizedException();
+        }
+
+        if (UserStatus::from(Auth::user()->status)->isInvalid()) {
+            Auth::logout();
+            throw new UnauthorizedInvalidUserException();
         }
 
         $user = $this->userRepository->updateWithId(Auth::user()->id, $requests->toLastLoginInput());

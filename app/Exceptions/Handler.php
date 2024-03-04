@@ -54,6 +54,7 @@ final class Handler extends ExceptionHandler
         // custom
         ValidateException::class,
         UnauthorizedException::class,
+        UnauthorizedInvalidUserException::class
     ];
 
     /**

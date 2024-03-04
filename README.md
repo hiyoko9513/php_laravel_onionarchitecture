@@ -99,8 +99,6 @@ $ composer dump-autoload
 - 環境変数「TRUSTED_PROXIES」：ロードバランサー用
 
 ## 考慮
-- リフレッシュトークンとアクセストークン
-- date header gmtが入っている
 - user status(login etc...)
 - seeder factories()
 - request headers(accept, referer, X-XSRF-TOKEN)
